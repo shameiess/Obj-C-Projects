@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gBO-rV-P4M">
+                                <rect key="frame" x="20" y="238" width="335" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaH-79-PDa">
+                                <rect key="frame" x="20" y="165" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B86-jJ-kfa">
+                                <rect key="frame" x="20" y="324" width="335" height="30"/>
+                                <state key="normal" title="Calculate"/>
+                                <connections>
+                                    <action selector="button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ke9-hB-MnS"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AGJ-RV-TuQ">
+                                <rect key="frame" x="20" y="78" width="335" height="29"/>
+                                <segments>
+                                    <segment title="California"/>
+                                    <segment title="Chicago"/>
+                                    <segment title="New York"/>
+                                    <segment title="Texas"/>
+                                </segments>
+                                <connections>
+                                    <action selector="taxSegmentControllerSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="tMl-jI-u71"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gBO-rV-P4M" firstAttribute="trailing" secondItem="B86-jJ-kfa" secondAttribute="trailing" id="3uc-0i-I09"/>
+                            <constraint firstItem="AGJ-RV-TuQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7Ja-rH-mCg"/>
+                            <constraint firstItem="AGJ-RV-TuQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="BQn-Yy-bJ9"/>
+                            <constraint firstItem="AGJ-RV-TuQ" firstAttribute="leading" secondItem="OaH-79-PDa" secondAttribute="leading" id="Clz-CB-PwM"/>
+                            <constraint firstItem="gBO-rV-P4M" firstAttribute="top" secondItem="OaH-79-PDa" secondAttribute="bottom" constant="52" id="HRv-YL-Emj"/>
+                            <constraint firstItem="OaH-79-PDa" firstAttribute="top" secondItem="AGJ-RV-TuQ" secondAttribute="bottom" constant="59" id="Ici-xT-p2u"/>
+                            <constraint firstItem="OaH-79-PDa" firstAttribute="leading" secondItem="gBO-rV-P4M" secondAttribute="leading" id="SBF-Uu-upA"/>
+                            <constraint firstItem="B86-jJ-kfa" firstAttribute="top" secondItem="gBO-rV-P4M" secondAttribute="bottom" constant="56" id="TGp-md-sSk"/>
+                            <constraint firstItem="OaH-79-PDa" firstAttribute="trailing" secondItem="gBO-rV-P4M" secondAttribute="trailing" id="U0h-s8-FAw"/>
+                            <constraint firstItem="gBO-rV-P4M" firstAttribute="leading" secondItem="B86-jJ-kfa" secondAttribute="leading" id="fJK-hg-6tB"/>
+                            <constraint firstItem="AGJ-RV-TuQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="58" id="q7Z-GS-5Kq"/>
+                            <constraint firstItem="AGJ-RV-TuQ" firstAttribute="trailing" secondItem="OaH-79-PDa" secondAttribute="trailing" id="vtD-eR-Tku"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="amountEnteredTextField" destination="gBO-rV-P4M" id="h3x-MH-UJq"/>
+                        <outlet property="taxSegmentController" destination="AGJ-RV-TuQ" id="4IR-hN-GkJ"/>
+                        <outlet property="totalTaxedAmountLabel" destination="OaH-79-PDa" id="n79-bW-1te"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="323.5" y="334.5"/>
+        </scene>
+    </scenes>
+</document>
