@@ -1,8 +1,8 @@
 //
 //  ViewController.h
-//  Tax-Calculator
+//  Silver-Calculator
 //
-//  Created by Kevin Nguyen on 7/25/16.
+//  Created by Kevin Nguyen on 8/1/16.
 //  Copyright © 2016 Kevin Nguyen. All rights reserved.
 //
 
