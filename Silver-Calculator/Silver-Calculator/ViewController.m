@@ -70,20 +70,25 @@ Calculator operation;
 - (NSString*) calculate:(NSString *)textFieldText andSliderValue:(float)slider {
     
     NSString *result;
+    float value;
+    
     switch (operation) {
         case ADD:
-            result = [NSString stringWithFormat:@"%f", _textField.text.floatValue + _slider.value];
+            value = _textField.text.floatValue + _slider.value;
             break;
         case SUBTRACT:
-            result = [NSString stringWithFormat:@"%f", _textField.text.floatValue - _slider.value];
+            value = _textField.text.floatValue - _slider.value;
             break;
         case MULTIPLY:
-            result = [NSString stringWithFormat:@"%f", _textField.text.floatValue * _slider.value];
+            value = _textField.text.floatValue * _slider.value;
             break;
         case DIVIDE:
-            result = [NSString stringWithFormat:@"%f", _textField.text.floatValue / _slider.value];
+            value = _textField.text.floatValue / _slider.value;
+            break;
+        default:
             break;
     }
+    result = [NSString stringWithFormat:@"%f", value];
     return result;
 }
 
@@ -95,4 +100,5 @@ Calculator operation;
     
     [self.view endEditing:YES];
 }
+
 @end
