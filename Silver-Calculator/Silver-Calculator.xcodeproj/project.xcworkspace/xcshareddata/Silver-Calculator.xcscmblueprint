@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BC574A01F018A6C6E44748B07B33AECDED256A16",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BC574A01F018A6C6E44748B07B33AECDED256A16" : 0,
+    "08709C9C947613638088025680F2563AFE36AB1F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "10E18EFE-8D05-4C7D-9003-AB5EB232BD3F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BC574A01F018A6C6E44748B07B33AECDED256A16" : "Silver-Calculator\/",
+    "08709C9C947613638088025680F2563AFE36AB1F" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Silver-Calculator",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Silver-Calculator.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/shameiess\/Obj-C-Projects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "08709C9C947613638088025680F2563AFE36AB1F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/shameiess\/Obj-C-Projects\/",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BC574A01F018A6C6E44748B07B33AECDED256A16"
+    }
+  ]
+}
