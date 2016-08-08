@@ -8,13 +8,14 @@
 
 #import "ViewController.h"
 
-typedef enum {ADD, SUBTRACT, MULTIPLY, DIVIDE, PERCENT, SIGN, CLEAR, DECIMAL, EQUAL} Operation;
+typedef enum {ADD, SUBTRACT, MULTIPLY, DIVIDE, PERCENT, SIGN} Operation;
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *display;
 - (IBAction)appendDigit:(UIButton *)sender;
 - (IBAction)performOperation:(UIButton *)sender;
 - (IBAction)enter;
+- (IBAction)clear;
 
 @end
 
@@ -22,32 +23,29 @@ typedef enum {ADD, SUBTRACT, MULTIPLY, DIVIDE, PERCENT, SIGN, CLEAR, DECIMAL, EQ
 
 BOOL userIsTypingNumber = NO;
 double accumulator;
-double secondNumber;
-double total;
 Operation operation;
+NSMutableArray *expressionArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self.view setBackgroundColor:[UIColor blackColor]];
+    expressionArray = [[NSMutableArray alloc] init];
 }
 
-- (void)setDisplayValue:(double)value {
-    self.display.text = [NSString stringWithFormat: @"%g", value];
-}
+#pragma mark - display label
 
 - (double)getDisplayValue {
     return [self.display.text doubleValue];
 }
-- (void)clearCalculator {
-    accumulator = 0;
-    secondNumber = 0;
-    total = 0;
-    [self setDisplayValue:0];
+- (void)setDisplayValue:(double)value {
+    self.display.text = [NSString stringWithFormat: @"%g", value];
 }
 
+
+#pragma mark - Button Actions
 - (IBAction)appendDigit:(UIButton *)sender {
     NSString *digit = sender.currentTitle;
-
+    [expressionArray addObject:digit];
+    NSLog(@"Array: %@", expressionArray);
     if (userIsTypingNumber) {
         self.display.text = [NSString stringWithFormat: @"%@%@", _display.text, digit];
     }
@@ -55,100 +53,97 @@ Operation operation;
         self.display.text = digit;
         userIsTypingNumber = YES;
     }
-    NSLog(@"%@", _display.text);
 }
-
-//NSMutableArray *stack = nil;
-
 
 - (IBAction)performOperation:(UIButton *)sender {
     userIsTypingNumber = NO;
     NSString *op = sender.currentTitle;
-
+    //[self checkLastItemIsNumeric];
+    
     while (!userIsTypingNumber) {
-        if ([op isEqual: @"AC"]) {
-            operation = CLEAR;
-            [self clearCalculator];
-            break;
-        }
-        if ([op isEqual: @"C"]) {
-            operation = CLEAR;
-            [self clearCalculator];
+        if ([op isEqual: @"+/-"]) {
+            operation = SIGN;
+            if (expressionArray.count <= 2)
+                [expressionArray insertObject:@"-" atIndex:0];
+            else {
+                [expressionArray addObject:@"-"];
+            }
+            double accumulator = -[self getDisplayValue];
+            [self setDisplayValue:accumulator];
             break;
         }
         if ([op isEqual: @"%"]) {
             operation = PERCENT;
-            accumulator = [self getDisplayValue];
-            accumulator = accumulator / 100;
-            [self setDisplayValue:accumulator];
-            break;
-        }
-        if ([op isEqual: @"+/-"]) {
-            operation = SIGN;
-            accumulator = -[self getDisplayValue];
+            NSArray* percent = [[NSArray alloc]initWithObjects:@"/",@"100", nil];
+            [expressionArray addObjectsFromArray:percent];
+            double accumulator = [self getDisplayValue]/100;
             [self setDisplayValue:accumulator];
             break;
         }
         if ([op isEqual: @"+"]) {
             operation = ADD;
-            accumulator = [self getDisplayValue];
+            [expressionArray addObject:op];
             break;
         }
         if ([op isEqual: @"-"]) {
             operation = SUBTRACT;
-            accumulator = [self getDisplayValue];
+            [expressionArray addObject:op];
             break;
         }
         if ([op isEqual: @"*"]) {
             operation = MULTIPLY;
-            accumulator = [self getDisplayValue];
+            [expressionArray addObject:op];
             break;
         }
         if ([op isEqual: @"/"]) {
             operation = DIVIDE;
-            accumulator = [self getDisplayValue];
+            [expressionArray addObject:op];
             break;
         }
-        accumulator = [self getDisplayValue];
-
     }
-
-    NSLog(@"Op: %@", op);
-    NSLog(@"Acc: %f", accumulator);
-    NSLog(@"Sec: %f", secondNumber);
+    NSLog(@"Array: %@", expressionArray);
 }
 
 - (IBAction)enter {
-    switch (operation) {
-        case CLEAR:
-            break;
-        case PERCENT:
-            total = [self getDisplayValue];
-            break;
-        case SIGN:
-            break;
-        case ADD:
-            secondNumber = [_display.text doubleValue];
-            total = accumulator + secondNumber;
-            break;
-        case SUBTRACT:
-            secondNumber = [_display.text doubleValue];
-            total = accumulator - secondNumber;
-            break;
-        case MULTIPLY:
-            secondNumber = [_display.text doubleValue];
-            total = accumulator * secondNumber;
-            break;
-        case DIVIDE:
-            secondNumber = [_display.text doubleValue];
-            total = accumulator / secondNumber;
-            break;
-        default: break;
-    }
-    [self setDisplayValue:total];
-    NSLog(@"Tot: %f", total);
+    NSLog(@"Array: %@", expressionArray);
+    [self calculateExpression];
 }
 
+- (IBAction)clear {
+    accumulator = 0;
+    self.display.text = @"0";
+    [expressionArray removeAllObjects];
+    NSLog(@"Array: %@", expressionArray);
+}
 
+#pragma mark - Calculations
+- (NSNumber *)calculateExpression {
+    [self checkLastItemIsNumeric];
+    NSNumber *result;
+    double total;
+    
+    @try {
+        NSString *numericExpression = [expressionArray componentsJoinedByString:@""];
+        NSPredicate *parsed = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"1.0 * %@ = 0", numericExpression]];
+        NSExpression *expression = [(NSComparisonPredicate *)parsed leftExpression];
+        //NSExpression *expression = [NSExpression expressionWithFormat:numericExpression];
+        result = [expression expressionValueWithObject:nil context:nil];
+        NSLog(@"Expression: %@", expression);
+        NSLog(@"Result: %@", result);
+    } @catch (NSException *e) {
+        NSLog(@"Exception: %@", e);}
+    
+    total = [result doubleValue];
+    [self setDisplayValue:total];
+    return result;
+}
+
+- (void) checkLastItemIsNumeric {
+    NSString *lastItem = [expressionArray lastObject];
+    BOOL lastItemIsNumeric = [lastItem rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound;
+    if (!lastItemIsNumeric) {
+        [expressionArray removeLastObject];
+    }
+}
 
 @end
