@@ -13,7 +13,7 @@ typedef enum {ADD, SUBTRACT, MULTIPLY, DIVIDE, PERCENT, SIGN} Operation;
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *display;
 - (IBAction)appendDigit:(UIButton *)sender;
-- (IBAction)performOperation:(UIButton *)sender;
+- (IBAction)binaryOperation:(UIButton *)sender;
 - (IBAction)enter;
 - (IBAction)clear;
 
@@ -22,6 +22,7 @@ typedef enum {ADD, SUBTRACT, MULTIPLY, DIVIDE, PERCENT, SIGN} Operation;
 @implementation ViewController
 
 BOOL userIsTypingNumber = NO;
+BOOL operationFlag = NO;
 double accumulator;
 Operation operation;
 NSMutableArray *expressionArray;
@@ -31,7 +32,7 @@ NSMutableArray *expressionArray;
     expressionArray = [[NSMutableArray alloc] init];
 }
 
-#pragma mark - display label
+#pragma mark - Display labels getters and setters
 
 - (double)getDisplayValue {
     return [self.display.text doubleValue];
@@ -46,6 +47,7 @@ NSMutableArray *expressionArray;
     NSString *digit = sender.currentTitle;
     [expressionArray addObject:digit];
     NSLog(@"Array: %@", expressionArray);
+    
     if (userIsTypingNumber) {
         self.display.text = [NSString stringWithFormat: @"%@%@", _display.text, digit];
     }
@@ -55,23 +57,34 @@ NSMutableArray *expressionArray;
     }
 }
 
-- (IBAction)performOperation:(UIButton *)sender {
-    userIsTypingNumber = NO;
+- (IBAction)unaryOperation:(UIButton *)sender {
+    //    userIsTypingNumber = NO;
+    //    operationFlag = NO;
     NSString *op = sender.currentTitle;
-    //[self checkLastItemIsNumeric];
     
-    while (!userIsTypingNumber) {
+    while (true) {
         if ([op isEqual: @"+/-"]) {
             operation = SIGN;
-            if (expressionArray.count <= 2)
-                [expressionArray insertObject:@"-" atIndex:0];
+            
+            if ([_display.text hasPrefix:@"-"]) {
+                self.display.text = [_display.text substringFromIndex:1];
+            }
             else {
+                self.display.text = [@"-" stringByAppendingString:_display.text];
+            }
+            
+            NSArray *sign = [[NSArray alloc]initWithObjects:@"*",@"-",@"1", nil];
+            
+            if (expressionArray.count == 0 || (userIsTypingNumber == NO && operationFlag == YES)) {
                 [expressionArray addObject:@"-"];
             }
-            double accumulator = -[self getDisplayValue];
-            [self setDisplayValue:accumulator];
+            else {
+                [expressionArray addObjectsFromArray:sign];
+            }
+            NSLog(@"Array: %@", expressionArray);
             break;
         }
+        
         if ([op isEqual: @"%"]) {
             operation = PERCENT;
             NSArray* percent = [[NSArray alloc]initWithObjects:@"/",@"100", nil];
@@ -80,27 +93,16 @@ NSMutableArray *expressionArray;
             [self setDisplayValue:accumulator];
             break;
         }
-        if ([op isEqual: @"+"]) {
-            operation = ADD;
-            [expressionArray addObject:op];
-            break;
-        }
-        if ([op isEqual: @"-"]) {
-            operation = SUBTRACT;
-            [expressionArray addObject:op];
-            break;
-        }
-        if ([op isEqual: @"*"]) {
-            operation = MULTIPLY;
-            [expressionArray addObject:op];
-            break;
-        }
-        if ([op isEqual: @"/"]) {
-            operation = DIVIDE;
-            [expressionArray addObject:op];
-            break;
-        }
     }
+}
+
+- (IBAction)binaryOperation:(UIButton *)sender {
+    userIsTypingNumber = NO;
+    operationFlag = YES;
+    NSString *op = sender.currentTitle;
+    [self checkLastItemIsNumeric];
+    [expressionArray addObject:op];
+    
     NSLog(@"Array: %@", expressionArray);
 }
 
@@ -126,7 +128,6 @@ NSMutableArray *expressionArray;
         NSString *numericExpression = [expressionArray componentsJoinedByString:@""];
         NSPredicate *parsed = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"1.0 * %@ = 0", numericExpression]];
         NSExpression *expression = [(NSComparisonPredicate *)parsed leftExpression];
-        //NSExpression *expression = [NSExpression expressionWithFormat:numericExpression];
         result = [expression expressionValueWithObject:nil context:nil];
         NSLog(@"Expression: %@", expression);
         NSLog(@"Result: %@", result);
