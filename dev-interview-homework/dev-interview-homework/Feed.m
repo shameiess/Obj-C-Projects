@@ -27,15 +27,6 @@
         self.locationLine1 = dictionary[@"locationline1"];
         self.locationline2 = dictionary[@"locationline2"];
         
-        
-        //        self.id=[sourceDictionary valueForKey:@"id"];
-        //        self.description=[sourceDictionary valueForKey:@"description"];
-        //        self.title=[sourceDictionary valueForKey:@"title"];
-        //        self.image=[sourceDictionary valueForKey:@"image"];
-        //        self.date=[sourceDictionary valueForKey:@"date"];
-        //        self.timestamp=[sourceDictionary valueForKey:@"timestamp"];
-        //        self.locationLine1=[sourceDictionary valueForKey:@"locationLine1"];
-        //        self.locationline2=[sourceDictionary valueForKey:@"locationLine2"];
     }
     return self;
     

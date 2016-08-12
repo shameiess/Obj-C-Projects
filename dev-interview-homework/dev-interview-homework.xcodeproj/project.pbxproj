@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		73186DA91D5D243100796E44 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73186DA81D5D243100796E44 /* TableViewController.m */; };
+		73186DAC1D5D519E00796E44 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73186DAB1D5D519E00796E44 /* TableViewCell.m */; };
+		73186DAF1D5D7C7500796E44 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73186DAE1D5D7C7500796E44 /* DetailViewController.m */; };
 		731EE34B1D5BC28F0047D379 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE34A1D5BC28F0047D379 /* main.m */; };
 		731EE34E1D5BC28F0047D379 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE34D1D5BC28F0047D379 /* AppDelegate.m */; };
 		731EE3511D5BC28F0047D379 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE3501D5BC28F0047D379 /* ViewController.m */; };
@@ -22,6 +24,10 @@
 		3C9A8450261C96120594DA99 /* Pods-dev-interview-homework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev-interview-homework.release.xcconfig"; path = "Pods/Target Support Files/Pods-dev-interview-homework/Pods-dev-interview-homework.release.xcconfig"; sourceTree = "<group>"; };
 		73186DA71D5D243100796E44 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		73186DA81D5D243100796E44 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		73186DAA1D5D519E00796E44 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		73186DAB1D5D519E00796E44 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		73186DAD1D5D7C7500796E44 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		73186DAE1D5D7C7500796E44 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		731EE3461D5BC28F0047D379 /* dev-interview-homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-interview-homework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		731EE34A1D5BC28F0047D379 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		731EE34C1D5BC28F0047D379 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +65,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		73186DB01D5E1A5700796E44 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				73186DA71D5D243100796E44 /* TableViewController.h */,
+				73186DA81D5D243100796E44 /* TableViewController.m */,
+				73186DAA1D5D519E00796E44 /* TableViewCell.h */,
+				73186DAB1D5D519E00796E44 /* TableViewCell.m */,
+				73186DAD1D5D7C7500796E44 /* DetailViewController.h */,
+				73186DAE1D5D7C7500796E44 /* DetailViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		731EE33D1D5BC28F0047D379 = {
 			isa = PBXGroup;
 			children = (
@@ -90,9 +109,8 @@
 				731EE3551D5BC28F0047D379 /* Assets.xcassets */,
 				731EE3571D5BC28F0047D379 /* LaunchScreen.storyboard */,
 				731EE35A1D5BC28F0047D379 /* Info.plist */,
+				73186DB01D5E1A5700796E44 /* View Controllers */,
 				731EE3491D5BC28F0047D379 /* Supporting Files */,
-				73186DA71D5D243100796E44 /* TableViewController.h */,
-				73186DA81D5D243100796E44 /* TableViewController.m */,
 			);
 			path = "dev-interview-homework";
 			sourceTree = "<group>";
@@ -236,10 +254,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				731EE3511D5BC28F0047D379 /* ViewController.m in Sources */,
+				73186DAC1D5D519E00796E44 /* TableViewCell.m in Sources */,
 				731EE34E1D5BC28F0047D379 /* AppDelegate.m in Sources */,
 				731EE34B1D5BC28F0047D379 /* main.m in Sources */,
 				73186DA91D5D243100796E44 /* TableViewController.m in Sources */,
 				731EE3621D5BE6E00047D379 /* Feed.m in Sources */,
+				73186DAF1D5D7C7500796E44 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

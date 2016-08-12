@@ -10,4 +10,6 @@
 
 @interface DetailViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *feedDetail;
+
 @end

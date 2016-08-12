@@ -13,6 +13,9 @@
 static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-interview-homework/master/feed.json";
 
 @interface ViewController ()
+
+@property (strong, nonatomic) NSMutableArray *feedArray;
+
 - (IBAction)getFeedJSON;
 
 @end
@@ -42,7 +45,6 @@ NSMutableArray *feedArray;
         }
         
         NSLog(@"%@", [[feedArray objectAtIndex:1] description]);
-        
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);

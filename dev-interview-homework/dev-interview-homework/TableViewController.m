@@ -9,6 +9,10 @@
 #import "TableViewController.h"
 #import "AFNetworking.h"
 #import "Feed.h"
+#import "TableViewCell.h"
+#import "DetailViewController.h"
+#import "UIImageView+AFNetworking.h"
+
 
 static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-interview-homework/master/feed.json";
 
@@ -23,6 +27,7 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"DEV APP";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self fetchFeed];
@@ -37,18 +42,17 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         self.feedObjectsArray = responseObject;
-        
         //NSLog(@"The Array: %@",self.feedObjectsArray);
-//        for (NSDictionary* item in responseObject) {
-//            Feed *feed = [[Feed alloc] initWithDictionary:item];
-//            NSLog(@"%@", feed);
-//            [self.feedObjectsArray addObject:feed];
-//        }
         
-//        NSLog(@"%@", [[_feedObjectsArray objectAtIndex:1] description]);
+        //        for (NSDictionary* item in responseObject) {
+        //            Feed *feed = [[Feed alloc] initWithDictionary:item];
+        //            NSLog(@"%@", feed);
+        //            [self.feedObjectsArray addObject:feed];
+        //        }
+        //
+        //        NSLog(@"%@", [[_feedObjectsArray objectAtIndex:1] description]);
         
         [self.tableView reloadData];
-        
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -72,58 +76,33 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    //cell.titleLabel.text = [[_feedObjectsArray objectAtIndex:indexPath.row] title];
     
     NSDictionary *tempDictionary= [self.feedObjectsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [tempDictionary objectForKey:@"title"];
-    cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
-    //cell.imageView.image = [tempDictionary objectForKey:@"image"];
+    
+    NSURL *url = [[NSURL alloc] initWithString:[tempDictionary objectForKey:@"image"]];
+    [cell.imageDisplay setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    
+    cell.dateLabel.text = [tempDictionary objectForKey:@"date"];
+    cell.titleLabel.text = [tempDictionary objectForKey:@"title"];
+    cell.locationLabel.text = [tempDictionary objectForKey:@"locationline1"];
+    cell.descriptionLabel.text = [tempDictionary objectForKey:@"description"];
+    
     return cell;
 }
 
+#pragma mark - Navigation
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"segue"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
+        detailViewController.feedDetail = [self.feedObjectsArray objectAtIndex:indexPath.row];
+    }
+}
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

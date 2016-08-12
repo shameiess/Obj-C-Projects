@@ -7,8 +7,11 @@
 //
 
 #import "DetailViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *detailImage;
+@property (weak, nonatomic) IBOutlet UILabel *detailTitle;
 
 @end
 
@@ -16,22 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.detailTitle.text = [self.feedDetail objectForKey:@"title"];
+
+    [self.detailImage setImageWithURL:[NSURL URLWithString:[self.feedDetail objectForKey:@"image"]]];
+
+//    NSURL *url = [[NSURL alloc] initWithString:[NSDictionary objectForKey:@"image"]];
+//    [self.detailImageDisplay setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"]];}
+
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
