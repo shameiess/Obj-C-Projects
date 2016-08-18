@@ -21,7 +21,6 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 
 @end
 
-
 @implementation TableViewController
 
 - (void)viewDidLoad {
@@ -30,14 +29,13 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     self.view.backgroundColor = [UIColor blackColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
+    
     self.feedObjectsArray = [NSMutableArray new];
     
     [self fetchFeed];
 }
 
 - (void)fetchFeed {
-    
     NSURL *URL = [NSURL URLWithString:feedJSON];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -48,7 +46,7 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
             Feed *feed = [[Feed alloc] initWithDictionary:item];
             [self.feedObjectsArray addObject:feed];
         }
-
+        
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
@@ -59,7 +57,6 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
                                                   cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertView show];
     }];
-    
 }
 
 #pragma mark - Table view data source
@@ -78,7 +75,7 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     Feed *feed = [_feedObjectsArray objectAtIndex:indexPath.row];
     
     if ([feed.imageURL isKindOfClass:NSString.class]) {
-    [cell.imageDisplay setImageWithURL:[NSURL URLWithString:feed.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
+        [cell.imageDisplay setImageWithURL:[NSURL URLWithString:feed.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
     }
     else {
         [cell.imageDisplay setImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
@@ -102,6 +99,5 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
         detailViewController.feedDetail = [self.feedObjectsArray objectAtIndex:indexPath.row];
     }
 }
-
 
 @end

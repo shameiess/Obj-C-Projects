@@ -26,15 +26,17 @@
 -(NSString*)formatDate:(NSString *)dateTime;
 
 @end
+
+#pragma example
 /*
-{
-    "id": 1,
-    "description": "Rebel Forces spotted on Hoth. Quell their rebellion for the Empire.",
-    "title": "Stop Rebel Forces",
-    "timestamp": "2015-06-18T17:02:02.614Z",
-    "image": "https://raw.githubusercontent.com/phunware/services-interview-resources/master/images/Battle_of_Hoth.jpg",
-    "date": "2015-06-18T23:30:00.000Z",
-    "locationline1": "Hoth",
-    "locationline2": "Anoat System"
-},
-*/
+ {
+ "id": 1,
+ "description": "Rebel Forces spotted on Hoth. Quell their rebellion for the Empire.",
+ "title": "Stop Rebel Forces",
+ "timestamp": "2015-06-18T17:02:02.614Z",
+ "image": "https://raw.githubusercontent.com/phunware/services-interview-resources/master/images/Battle_of_Hoth.jpg",
+ "date": "2015-06-18T23:30:00.000Z",
+ "locationline1": "Hoth",
+ "locationline2": "Anoat System"
+ },
+ */

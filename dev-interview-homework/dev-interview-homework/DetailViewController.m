@@ -29,7 +29,6 @@
 }
 
 - (void)loadDetail {
-    
     if ([self.feedDetail.imageURL isKindOfClass:NSString.class]) {
         [self.detailImage setImageWithURL:[NSURL URLWithString:_feedDetail.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
     }
@@ -43,7 +42,6 @@
 }
 
 - (IBAction)shareButton:(id)sender {
-    
     NSString *sharedTitle = [_feedDetail.mainTitle stringByAppendingString:@"\n"];;
     NSString *sharedDescription = [_feedDetail.mainDescription stringByAppendingString:@"\n"];
     NSString *sharedDate = [NSString stringWithFormat:@"Date: %@", [_feedDetail formatDate:_feedDetail.dateTime]];

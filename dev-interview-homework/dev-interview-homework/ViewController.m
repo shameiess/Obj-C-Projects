@@ -26,14 +26,12 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 
 NSMutableArray *feedArray;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     feedArray = [[NSMutableArray alloc] init];
 }
 
 - (IBAction)getFeedJSON {
-    
     NSURL *URL = [NSURL URLWithString:feedJSON];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -46,8 +44,6 @@ NSMutableArray *feedArray;
             [feedArray addObject:feed];
         }
         
-        //NSLog(@"%@", [[feedArray objectAtIndex:1] description]);
-        
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failure"
@@ -56,7 +52,6 @@ NSMutableArray *feedArray;
                                                   cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertView show];
     }];
-    
 }
 
 @end
