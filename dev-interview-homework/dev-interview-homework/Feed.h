@@ -10,17 +10,20 @@
 @interface Feed : NSObject
 
 @property (nonatomic) NSNumber *identifier;
-@property (nonatomic) NSString *description;
-@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *mainDescription;
+@property (nonatomic) NSString *mainTitle;
 //@property (nonatomic, copy) NSDate *timestamp;
 @property (nonatomic) NSString *timestamp;
-@property (nonatomic) NSURL *image;
-@property (nonatomic) NSString *date;
+//@property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic,strong) NSString *imageURL;
+@property (nonatomic) NSString *dateTime;
+//@property (nonatomic) NSDate *dateTime;
 @property (nonatomic) NSString *locationLine1;
 @property (nonatomic) NSString *locationline2;
 
--(id)initWithDictionary:(NSDictionary *)dictionary;
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
+-(NSString*)formatDate:(NSString *)dateTime;
 
 @end
 /*

@@ -10,19 +10,19 @@
 #import "Feed.h"
 
 @implementation Feed
-@synthesize identifier,description,title,image,date,timestamp,locationLine1,locationline2;
+@synthesize identifier,mainDescription,mainTitle,imageURL,dateTime,timestamp,locationLine1,locationline2;
 
 
--(id)initWithDictionary:(NSDictionary *)dictionary
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super init];
     if (self) {
         
         self.identifier = dictionary[@"id"];
-        self.description = dictionary[@"description"];
-        self.title = dictionary[@"title"];
-        self.image = dictionary[@"image"];
-        self.date = dictionary[@"date"];
+        self.mainDescription = dictionary[@"description"];
+        self.mainTitle = dictionary[@"title"];
+        self.imageURL = dictionary[@"image"];
+        self.dateTime = dictionary[@"date"];
         self.timestamp = dictionary[@"timestamp"];
         self.locationLine1 = dictionary[@"locationline1"];
         self.locationline2 = dictionary[@"locationline2"];
@@ -31,6 +31,18 @@
     return self;
     
 }
+
+-(NSString*)formatDate:(NSString *)dateTimeString {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat: @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *dte = [dateFormat dateFromString:dateTimeString];
+    [dateFormat setDateFormat: @"MMM d, yyyy 'at' h:mm a"];
+    NSString *finalStr = [dateFormat stringFromDate:dte];
+//    NSLog(@"%@", finalStr);
+    return finalStr;
+}
+
 @end
 
 

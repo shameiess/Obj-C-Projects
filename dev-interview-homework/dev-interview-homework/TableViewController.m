@@ -13,9 +13,7 @@
 #import "DetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-
 static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-interview-homework/master/feed.json";
-
 
 @interface TableViewController ()
 
@@ -23,13 +21,18 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 
 @end
 
+
 @implementation TableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"DEV APP";
+    self.view.backgroundColor = [UIColor blackColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+
+    self.feedObjectsArray = [NSMutableArray new];
+    
     [self fetchFeed];
 }
 
@@ -41,17 +44,11 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        self.feedObjectsArray = responseObject;
-        //NSLog(@"The Array: %@",self.feedObjectsArray);
-        
-        //        for (NSDictionary* item in responseObject) {
-        //            Feed *feed = [[Feed alloc] initWithDictionary:item];
-        //            NSLog(@"%@", feed);
-        //            [self.feedObjectsArray addObject:feed];
-        //        }
-        //
-        //        NSLog(@"%@", [[_feedObjectsArray objectAtIndex:1] description]);
-        
+        for (NSDictionary* item in responseObject) {
+            Feed *feed = [[Feed alloc] initWithDictionary:item];
+            [self.feedObjectsArray addObject:feed];
+        }
+
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
@@ -78,17 +75,19 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    //cell.titleLabel.text = [[_feedObjectsArray objectAtIndex:indexPath.row] title];
+    Feed *feed = [_feedObjectsArray objectAtIndex:indexPath.row];
     
-    NSDictionary *tempDictionary= [self.feedObjectsArray objectAtIndex:indexPath.row];
+    if ([feed.imageURL isKindOfClass:NSString.class]) {
+    [cell.imageDisplay setImageWithURL:[NSURL URLWithString:feed.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
+    }
+    else {
+        [cell.imageDisplay setImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
+    }
     
-    NSURL *url = [[NSURL alloc] initWithString:[tempDictionary objectForKey:@"image"]];
-    [cell.imageDisplay setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    
-    cell.dateLabel.text = [tempDictionary objectForKey:@"date"];
-    cell.titleLabel.text = [tempDictionary objectForKey:@"title"];
-    cell.locationLabel.text = [tempDictionary objectForKey:@"locationline1"];
-    cell.descriptionLabel.text = [tempDictionary objectForKey:@"description"];
+    cell.titleLabel.text = feed.mainTitle;
+    cell.dateLabel.text = [feed formatDate:feed.dateTime];
+    cell.locationLabel.text = feed.locationLine1;
+    cell.descriptionLabel.text = feed.mainDescription;
     
     return cell;
 }

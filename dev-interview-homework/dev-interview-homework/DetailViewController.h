@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Feed.h"
 
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *feedDetail;
+@property (strong, nonatomic) Feed *feedDetail;
 
 @end
