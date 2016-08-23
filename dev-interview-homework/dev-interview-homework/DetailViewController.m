@@ -23,9 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _feedDetail.mainTitle;
+    self.title = _feedDetail.title;
     [self loadDetail];
-    
 }
 
 - (void)loadDetail {
@@ -37,13 +36,13 @@
     }
     
     self.detailDate.text = [_feedDetail formatDate:_feedDetail.dateTime];
-    self.detailTitle.text = _feedDetail.mainTitle;
-    self.detailDescription.text = _feedDetail.mainDescription;
+    self.detailTitle.text = _feedDetail.title;
+    self.detailDescription.text = _feedDetail.description;
 }
 
 - (IBAction)shareButton:(id)sender {
-    NSString *sharedTitle = [_feedDetail.mainTitle stringByAppendingString:@"\n"];;
-    NSString *sharedDescription = [_feedDetail.mainDescription stringByAppendingString:@"\n"];
+    NSString *sharedTitle = [_feedDetail.title stringByAppendingString:@"\n"];;
+    NSString *sharedDescription = [_feedDetail.description stringByAppendingString:@"\n"];
     NSString *sharedDate = [NSString stringWithFormat:@"Date: %@", [_feedDetail formatDate:_feedDetail.dateTime]];
     UIImage *sharedImage = [UIImage alloc];
     if ([self.feedDetail.imageURL isKindOfClass:NSString.class]) {

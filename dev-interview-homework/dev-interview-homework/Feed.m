@@ -11,15 +11,15 @@
 
 @implementation Feed
 
-@synthesize identifier,mainDescription,mainTitle,imageURL,dateTime,timestamp,locationLine1,locationline2;
+@synthesize identifier,description,title,imageURL,dateTime,timestamp,locationLine1,locationline2;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
         
         self.identifier = dictionary[@"id"];
-        self.mainDescription = dictionary[@"description"];
-        self.mainTitle = dictionary[@"title"];
+        self.description = dictionary[@"description"];
+        self.title = dictionary[@"title"];
         self.imageURL = dictionary[@"image"];
         self.dateTime = dictionary[@"date"];
         self.timestamp = dictionary[@"timestamp"];

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Feed.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) Feed *feedDetail;
+@property (strong, nonatomic) UIScrollView *scrollView;
 
 @end

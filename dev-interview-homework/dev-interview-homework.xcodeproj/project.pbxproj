@@ -13,10 +13,10 @@
 		731EE34B1D5BC28F0047D379 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE34A1D5BC28F0047D379 /* main.m */; };
 		731EE34E1D5BC28F0047D379 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE34D1D5BC28F0047D379 /* AppDelegate.m */; };
 		731EE3511D5BC28F0047D379 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE3501D5BC28F0047D379 /* ViewController.m */; };
-		731EE3541D5BC28F0047D379 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 731EE3521D5BC28F0047D379 /* Main.storyboard */; };
 		731EE3561D5BC28F0047D379 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731EE3551D5BC28F0047D379 /* Assets.xcassets */; };
 		731EE3591D5BC28F0047D379 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 731EE3571D5BC28F0047D379 /* LaunchScreen.storyboard */; };
 		731EE3621D5BE6E00047D379 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 731EE3611D5BE6E00047D379 /* Feed.m */; };
+		73AE5C681D6CDEE7004144E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73AE5C661D6CDEE7004144E5 /* Main.storyboard */; };
 		DBA936B333A37553CA7A2D60 /* libPods-dev-interview-homework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DC6671963C6873151DFDB2 /* libPods-dev-interview-homework.a */; };
 /* End PBXBuildFile section */
 
@@ -34,12 +34,12 @@
 		731EE34D1D5BC28F0047D379 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		731EE34F1D5BC28F0047D379 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		731EE3501D5BC28F0047D379 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		731EE3531D5BC28F0047D379 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		731EE3551D5BC28F0047D379 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		731EE3581D5BC28F0047D379 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		731EE35A1D5BC28F0047D379 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		731EE3601D5BE43D0047D379 /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
 		731EE3611D5BE6E00047D379 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		73AE5C671D6CDEE7004144E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		951F6F652961D166EBE922C1 /* Pods-dev-interview-homework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dev-interview-homework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dev-interview-homework/Pods-dev-interview-homework.debug.xcconfig"; sourceTree = "<group>"; };
 		A4DC6671963C6873151DFDB2 /* libPods-dev-interview-homework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dev-interview-homework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,8 +105,8 @@
 				731EE3611D5BE6E00047D379 /* Feed.m */,
 				731EE34F1D5BC28F0047D379 /* ViewController.h */,
 				731EE3501D5BC28F0047D379 /* ViewController.m */,
-				731EE3521D5BC28F0047D379 /* Main.storyboard */,
 				731EE3551D5BC28F0047D379 /* Assets.xcassets */,
+				73AE5C661D6CDEE7004144E5 /* Main.storyboard */,
 				731EE3571D5BC28F0047D379 /* LaunchScreen.storyboard */,
 				731EE35A1D5BC28F0047D379 /* Info.plist */,
 				73186DB01D5E1A5700796E44 /* View Controllers */,
@@ -192,9 +192,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73AE5C681D6CDEE7004144E5 /* Main.storyboard in Resources */,
 				731EE3591D5BC28F0047D379 /* LaunchScreen.storyboard in Resources */,
 				731EE3561D5BC28F0047D379 /* Assets.xcassets in Resources */,
-				731EE3541D5BC28F0047D379 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,20 +266,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		731EE3521D5BC28F0047D379 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				731EE3531D5BC28F0047D379 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		731EE3571D5BC28F0047D379 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				731EE3581D5BC28F0047D379 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		73AE5C661D6CDEE7004144E5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73AE5C671D6CDEE7004144E5 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -5,13 +5,13 @@
 //  Created by Kevin Nguyen on 8/10/16.
 //  Copyright © 2016 Kevin Nguyen. All rights reserved.
 //
+#import <Realm/Realm.h>
 
+@interface Feed : RLMObject
 
-@interface Feed : NSObject
-
-@property (nonatomic) NSNumber *identifier;
-@property (nonatomic) NSString *mainDescription;
-@property (nonatomic) NSString *mainTitle;
+@property (nonatomic) NSNumber<RLMInt> *identifier;
+@property (nonatomic) NSString *description;
+@property (nonatomic) NSString *title;
 //@property (nonatomic, copy) NSDate *timestamp;
 @property (nonatomic) NSString *timestamp;
 //@property (nonatomic, strong) NSURL *imageURL;
@@ -26,6 +26,8 @@
 -(NSString*)formatDate:(NSString *)dateTime;
 
 @end
+
+RLM_ARRAY_TYPE(Feed)
 
 #pragma example
 /*

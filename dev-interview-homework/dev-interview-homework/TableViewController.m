@@ -12,12 +12,14 @@
 #import "TableViewCell.h"
 #import "DetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import <Realm/Realm.h>
 
 static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-interview-homework/master/feed.json";
 
 @interface TableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *feedObjectsArray;
+//@property (strong, nonatomic) NSMutableArray *feedObjectsArray;
+@property (nonatomic, strong) RLMResults *array;
 
 @end
 
@@ -25,14 +27,17 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"DEV APP";
     self.view.backgroundColor = [UIColor blackColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.feedObjectsArray = [NSMutableArray new];
+    //self.feedObjectsArray = [NSMutableArray new];
     
     [self fetchFeed];
+    
+    self.array = [Feed allObjects];
 }
 
 - (void)fetchFeed {
@@ -43,10 +48,16 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         for (NSDictionary* item in responseObject) {
+            
             Feed *feed = [[Feed alloc] initWithDictionary:item];
-            [self.feedObjectsArray addObject:feed];
+            //[self.feedObjectsArray addObject:feed];
+            
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            [realm addObject:feed];
+            [realm commitWriteTransaction];
         }
-        
+        NSLog(@"%@", [RLMRealmConfiguration defaultConfiguration].fileURL);
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
@@ -66,25 +77,25 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.feedObjectsArray count];
+    return [self.array count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    Feed *feed = [_feedObjectsArray objectAtIndex:indexPath.row];
+    Feed *feed = [_array objectAtIndex:indexPath.row];
     
-    if ([feed.imageURL isKindOfClass:NSString.class]) {
+    if (![feed.imageURL isKindOfClass:NSNull.class]) {
         [cell.imageDisplay setImageWithURL:[NSURL URLWithString:feed.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
     }
     else {
         [cell.imageDisplay setImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
     }
     
-    cell.titleLabel.text = feed.mainTitle;
+    cell.titleLabel.text = feed.title ;
     cell.dateLabel.text = [feed formatDate:feed.dateTime];
     cell.locationLabel.text = feed.locationLine1;
-    cell.descriptionLabel.text = feed.mainDescription;
+    cell.descriptionLabel.text = feed.description;
     
     return cell;
 }
@@ -96,7 +107,7 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
-        detailViewController.feedDetail = [self.feedObjectsArray objectAtIndex:indexPath.row];
+        detailViewController.feedDetail = [self.array objectAtIndex:indexPath.row];
     }
 }
 

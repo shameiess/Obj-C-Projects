@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "Feed.h"
 
-#warning THIS VC IS MAINLY USED TO TEST CONSUMING JSON PAYLOAD
+#warning THIS VC IS USED TO TEST CONSUMING JSON PAYLOAD
 
 static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-interview-homework/master/feed.json";
 
