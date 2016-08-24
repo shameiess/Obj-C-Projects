@@ -18,7 +18,6 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
 
 @interface TableViewController ()
 
-//@property (strong, nonatomic) NSMutableArray *feedObjectsArray;
 @property (nonatomic, strong) RLMResults *array;
 
 @end
@@ -33,11 +32,13 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    //self.feedObjectsArray = [NSMutableArray new];
-    
-    [self fetchFeed];
-    
+    // Checks if there is a default realm and fetches feed if it doesn't exist
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    if (!realm) {
+        [self fetchFeed];
+    }
     self.array = [Feed allObjects];
+    
 }
 
 - (void)fetchFeed {
@@ -50,7 +51,6 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
         for (NSDictionary* item in responseObject) {
             
             Feed *feed = [[Feed alloc] initWithDictionary:item];
-            //[self.feedObjectsArray addObject:feed];
             
             RLMRealm *realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
