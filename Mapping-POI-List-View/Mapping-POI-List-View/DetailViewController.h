@@ -18,7 +18,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *directionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *intermodalLabel;
 
-//- (id)init;
-//- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle;
-
 @end

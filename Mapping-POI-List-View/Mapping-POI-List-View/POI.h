@@ -32,14 +32,16 @@
 @property (nonatomic) NSString *ward;
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) NSString *longitude;
-//@property (nonatomic) NSString *location; //need to find a way to map subobjects
 
-// Initializes the JSON object
--(id)initWithDictionary:(NSDictionary*)dictionary;
+// Initializes the POI object from JSON
+- (id)initWithDictionary:(NSDictionary*)dictionary;
 
 - (id)initWithCoordinates:(CLLocationCoordinate2D)location
                 placeName:(NSString *)placeName
               description:(NSString *)description;
+
+- (void)toStreetAddress:(NSString*)latitude withLongitude:(NSString*)longitude
+             completion:(void(^)(NSString*))completion;
 
 // Consumes JSON feed from URL HTTP request
 - (void)getJSONFeed:(NSString*)url withObjectForKey:(NSString*)key

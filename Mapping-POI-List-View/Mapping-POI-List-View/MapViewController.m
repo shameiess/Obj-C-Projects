@@ -12,49 +12,47 @@
 #import <Realm/Realm.h>
 #import "DetailViewController.h"
 
-#define URL @"https://s3.amazonaws.com/mmios8week/bus.json"
+NSString * const URL = @"https://s3.amazonaws.com/mmios8week/bus.json";
 
-@interface MapViewController () <MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate>
+@interface MapTableViewController () <MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating, CLLocationManagerDelegate>
+
+@property (strong, nonatomic) NSMutableArray *array;
+@property (strong, nonatomic) NSArray *displayedArray;
+@property (strong, nonatomic) NSMutableArray *filteredArray;
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) IBOutlet UITableView *listView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segment;
 - (IBAction)segmentSelected:(UISegmentedControl *)sender;
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) NSMutableArray *array;
-@property (strong, nonatomic) NSArray *sortedArray;
 
 @end
 
-@implementation MapViewController
-
-BOOL isSearching;
+@implementation MapTableViewController
 
 -(void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setUp];
+    self.array = [[NSMutableArray alloc] init];
+    self.filteredArray = [[NSMutableArray alloc] init];
+    
+    [self setUpMapView];
+    [self setUpTableView];
+    
     POI *feed = [[POI alloc] init];
     [feed getJSONFeed:URL withObjectForKey:@"row" completion:^(NSDictionary *json, BOOL success) {
          if (success) {
              POI *poi = [[POI alloc] initWithDictionary:json];
              [self.array addObject:poi];
-             //POI *pin = [[POI alloc] initWithCoordinates:poi.coordinate placeName:poi.cta_stop_name description:poi.inter_modal];
-             //[self.mapView addAnnotation:pin];
-             //[self viewWillAppear:YES];
          }
-        //Sorts to alphabetical for list view
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cta_stop_name"
-                                                      ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        self.sortedArray = [_array sortedArrayUsingDescriptors:sortDescriptors];
-        [self.mapView addAnnotations:_sortedArray];
-        [self.listView reloadData];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"cta_stop_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+        [self.array sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        self.displayedArray = _array;
+        [self.mapView addAnnotations:_array];
+        [self.tableView reloadData];
      }];
 }
-
-
 
 #pragma mark MKMapView delegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
@@ -79,19 +77,21 @@ BOOL isSearching;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-//    DetailViewController *dvc = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     DetailViewController *dvc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     [dvc view];
-    POI *poiAnnotation = (POI *) view.annotation;
-    NSLog(@"%@", poiAnnotation.uuid);
-    NSLog(@"%@", poiAnnotation.routes);
     
+    POI *poiAnnotation = (POI *) view.annotation;
     dvc.title = poiAnnotation.cta_stop_name;
-    dvc.addressLabel.text = poiAnnotation.address;
+    //dvc.addressLabel.text = poiAnnotation.address;
+    [poiAnnotation toStreetAddress:[poiAnnotation latitude] withLongitude:[poiAnnotation longitude] completion:^(NSString* address) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            dvc.addressLabel.text = address;
+        });
+    }];
     dvc.routesLabel.text = poiAnnotation.routes;
     dvc.directionLabel.text = poiAnnotation.direction;
     dvc.intermodalLabel.text = poiAnnotation.inter_modal;
-    
+
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
@@ -100,12 +100,12 @@ BOOL isSearching;
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.sortedArray count];
+    return [self.displayedArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 
-    POI *poiCell = [_sortedArray objectAtIndex:indexPath.row];
+    POI *poiCell = [_displayedArray objectAtIndex:indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
@@ -121,41 +121,52 @@ BOOL isSearching;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"segue"])
     {
-        NSIndexPath *indexPath = [self.listView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
-        detailViewController.details = [self.sortedArray objectAtIndex:indexPath.row];
+        detailViewController.details = [self.displayedArray objectAtIndex:indexPath.row];
     }
 }
 
-#pragma mark segment
+#pragma mark Search filter
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = searchController.searchBar.text;
+    
+    if (![searchString isEqualToString:@""]) {
+        [self.filteredArray removeAllObjects];
+        for (POI *poi in self.array) {
+            if ([poi.cta_stop_name localizedCaseInsensitiveContainsString:searchString] == YES) {
+                [self.filteredArray addObject:poi];
+            }
+        }
+        self.displayedArray = _filteredArray;
+    }
+    else {
+        self.displayedArray = _array;
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark segment action
 - (IBAction)segmentSelected:(UISegmentedControl *)sender {
     switch (_segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Map Pressed");
             self.title = @"Map";
-            [self.listView setHidden:YES];
+            [self.tableView setHidden:YES];
             break;
         case 1:
             NSLog(@"List Pressed");
             self.title = @"List";
-            [self.listView setHidden:NO];
+            [self.tableView setHidden:NO];
             break;
         default:
             break;
     }
 }
 
-- (void)setUp {
-    self.array = [[NSMutableArray alloc] init];
-    self.mapView.delegate = self;
-    [self setUpInitialView];
-    self.listView.delegate = self;
-    self.listView.dataSource = self;
-    [self.listView setHidden:YES];
-}
-
-- (void)setUpInitialView {
+- (void)setUpMapView {
     self.title = @"Map";
+    self.mapView.delegate = self;
     
     // Sets initial map view over Chicago
     MKCoordinateRegion region;
@@ -164,39 +175,21 @@ BOOL isSearching;
     region.span.longitudeDelta  = 0.050;
     region.span.latitudeDelta  = 0.050;
     [self.mapView setRegion:region animated:YES];
+}
+- (void)setUpTableView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setHidden:YES];
     
-    // Test geofence notifications
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    CLLocationCoordinate2D pinCoordinate = CLLocationCoordinate2DMake(30.347912,
-                                                                       -97.752379);
-    // Draws Circular geofence region
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:pinCoordinate radius:1000];
-    [self.mapView addOverlay:circle];
-    
-    // Test pin
-    MKPointAnnotation *pinAnnotation = [[MKPointAnnotation alloc] init];
-    pinAnnotation.coordinate = pinCoordinate;
-    pinAnnotation.title = @"Kevin's House";
-    pinAnnotation.subtitle = @"Best House";
-    [self.mapView addAnnotation:pinAnnotation];
-    
-    // Region monitoring
-    CLRegion *kevinRegion = [[CLCircularRegion alloc]initWithCenter:pinCoordinate
-                                                        radius:100.0
-                                                    identifier:@"Kevin's Condo"];
-    [self.locationManager startMonitoringForRegion:kevinRegion];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
+    [self.searchController.searchBar sizeToFit];
 }
 
-// Renders circle
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
-    circleRenderer.strokeColor = [UIColor blackColor];
-    circleRenderer.fillColor = [UIColor greenColor];
-    circleRenderer.alpha = 0.5f;
-    return circleRenderer;
-}
 
 @end
 

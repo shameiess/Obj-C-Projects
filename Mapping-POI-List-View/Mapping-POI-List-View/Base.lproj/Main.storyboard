@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wcv-RS-7Fh">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Map Table View Controller-->
         <scene sceneID="J1l-w8-Ait">
             <objects>
-                <viewController id="XJv-0J-mfu" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController id="XJv-0J-mfu" customClass="MapTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZWt-3I-j47"/>
                         <viewControllerLayoutGuide type="bottom" id="UPE-Iy-ufy"/>
@@ -30,18 +29,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KwI-tK-LbW" id="2XM-Ph-tTR">
-                                            <frame key="frameInset" width="342" height="43"/>
+                                            <frame key="frameInset" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UYh-Bs-3I1">
-                                                    <frame key="frameInset" minX="15" minY="5" width="32" height="20"/>
+                                                    <frame key="frameInset" minX="15" minY="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8mB-Gf-Xfx">
-                                                    <frame key="frameInset" minX="15" minY="25" width="41" height="14"/>
+                                                    <frame key="frameInset" minX="15" minY="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -69,25 +68,25 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IKa-1q-Qxl" firstAttribute="leading" secondItem="hCZ-av-3l9" secondAttribute="leading" id="0gj-ZQ-iCl"/>
-                            <constraint firstItem="EDW-UT-5eW" firstAttribute="top" secondItem="ECw-43-FmF" secondAttribute="top" id="17N-VV-Yea"/>
-                            <constraint firstItem="EDW-UT-5eW" firstAttribute="leading" secondItem="IKa-1q-Qxl" secondAttribute="leading" id="2vP-hc-vwn"/>
-                            <constraint firstItem="hCZ-av-3l9" firstAttribute="bottom" secondItem="UPE-Iy-ufy" secondAttribute="top" id="NDF-Ug-vql"/>
-                            <constraint firstAttribute="trailing" secondItem="EDW-UT-5eW" secondAttribute="trailing" id="TcW-6h-9lV"/>
-                            <constraint firstItem="EDW-UT-5eW" firstAttribute="leading" secondItem="ECw-43-FmF" secondAttribute="leading" id="axe-Xb-oTd"/>
-                            <constraint firstItem="EDW-UT-5eW" firstAttribute="bottom" secondItem="IKa-1q-Qxl" secondAttribute="bottom" id="drW-qD-nrJ"/>
-                            <constraint firstItem="IKa-1q-Qxl" firstAttribute="trailing" secondItem="hCZ-av-3l9" secondAttribute="trailing" id="fhJ-ed-epa"/>
-                            <constraint firstItem="IKa-1q-Qxl" firstAttribute="top" secondItem="ZWt-3I-j47" secondAttribute="bottom" id="nDe-5d-cEN"/>
-                            <constraint firstAttribute="bottom" secondItem="IKa-1q-Qxl" secondAttribute="bottom" constant="20" symbolic="YES" id="tEv-mU-UR1"/>
-                            <constraint firstItem="EDW-UT-5eW" firstAttribute="trailing" secondItem="IKa-1q-Qxl" secondAttribute="trailing" id="x9S-pz-hH1"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="trailing" secondItem="hCZ-av-3l9" secondAttribute="trailing" id="76b-Io-6Bj"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="leading" secondItem="IKa-1q-Qxl" secondAttribute="leading" id="ADr-7c-dSv"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="leading" secondItem="hCZ-av-3l9" secondAttribute="leading" id="JVh-S3-bAe"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="top" secondItem="IKa-1q-Qxl" secondAttribute="top" id="OG4-b0-2Di"/>
+                            <constraint firstItem="UPE-Iy-ufy" firstAttribute="top" secondItem="EDW-UT-5eW" secondAttribute="bottom" constant="27" id="PHz-m6-aRD"/>
+                            <constraint firstItem="hCZ-av-3l9" firstAttribute="bottom" secondItem="UPE-Iy-ufy" secondAttribute="top" id="QLO-jA-GV6"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="trailing" secondItem="IKa-1q-Qxl" secondAttribute="trailing" id="VyV-mq-ZDr"/>
+                            <constraint firstAttribute="trailing" secondItem="EDW-UT-5eW" secondAttribute="trailing" id="a5a-Hb-hhF"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="top" secondItem="ECw-43-FmF" secondAttribute="top" constant="64" id="j77-xO-MJ2"/>
+                            <constraint firstItem="IKa-1q-Qxl" firstAttribute="bottom" secondItem="EDW-UT-5eW" secondAttribute="bottom" id="z0q-nO-cMf"/>
+                            <constraint firstItem="EDW-UT-5eW" firstAttribute="leading" secondItem="ECw-43-FmF" secondAttribute="leading" id="zfM-hs-WoY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jfu-87-lrQ"/>
                     <connections>
-                        <outlet property="listView" destination="IKa-1q-Qxl" id="uMX-Bj-cr8"/>
                         <outlet property="mapView" destination="EDW-UT-5eW" id="59n-sk-JXs"/>
                         <outlet property="searchDisplayController" destination="xvh-YI-x6U" id="AjK-in-7o3"/>
                         <outlet property="segment" destination="hCZ-av-3l9" id="VIn-Rx-rd7"/>
+                        <outlet property="tableView" destination="IKa-1q-Qxl" id="GdI-zN-et7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5h-B2-FSL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCa-3G-A2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2496.8000000000002" y="204.64767616191907"/>
+            <point key="canvasLocation" x="3285.5999999999999" y="204.64767616191907"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tL8-s4-wZ8">

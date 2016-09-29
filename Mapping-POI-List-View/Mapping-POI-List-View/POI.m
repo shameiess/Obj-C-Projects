@@ -13,8 +13,6 @@
 
 @implementation POI
 
-@synthesize identifier,uuid,position,address,stop_id,cta_stop_name,direction,routes,inter_modal,ward,latitude,longitude,title,subtitle,coordinate;//,location;
-
 -(id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self != nil) {
@@ -50,6 +48,23 @@
     }
     return self;
 }
+
+- (void)toStreetAddress:(NSString*)latitude withLongitude:(NSString*)longitude
+             completion:(void(^)(NSString*))completion {
+    // Returns addressLabel to address from lat/long
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
+    __block NSString *returnAddress = @"";
+
+    [geocoder reverseGeocodeLocation: location completionHandler: ^(NSArray *placemarks, NSError *error) {
+        CLPlacemark* placemark;
+        placemark = [placemarks lastObject];
+        NSLog(@"Placemark %@", placemark.thoroughfare);
+        returnAddress = [NSString stringWithFormat:@"%@, %@, %@ %@", placemark.thoroughfare, placemark.locality, placemark.administrativeArea, placemark.postalCode];
+        completion(returnAddress);
+    }];
+}
+
 
 - (void)getJSONFeed:(NSString*)url withObjectForKey:(NSString*)key completion:(void(^)(NSDictionary *json, BOOL success))completion {
     NSURL *URL = [NSURL URLWithString:url];
