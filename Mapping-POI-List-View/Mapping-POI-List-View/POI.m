@@ -10,7 +10,6 @@
 #import "POI.h"
 #import <AFNetworking.h>
 
-
 @implementation POI
 
 -(id)initWithDictionary:(NSDictionary *)dictionary {
@@ -65,7 +64,6 @@
     }];
 }
 
-
 - (void)getJSONFeed:(NSString*)url withObjectForKey:(NSString*)key completion:(void(^)(NSDictionary *json, BOOL success))completion {
     NSURL *URL = [NSURL URLWithString:url];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -81,17 +79,6 @@
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-//         UIAlertController *alert = [UIAlertController
-//                                     alertControllerWithTitle:@"Failure"
-//                                     message:[error localizedDescription]
-//                                     preferredStyle:UIAlertControllerStyleAlert];
-//                
-//        [self.presentViewController:alert animated:YES completion:nil];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alertView show];
         completion(nil, NO);
     }];
 }

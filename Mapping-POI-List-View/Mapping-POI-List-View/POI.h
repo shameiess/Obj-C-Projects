@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import <Realm/Realm.h>
 
 @interface POI : NSObject<MKAnnotation> {
     CLLocationCoordinate2D coordinate;
@@ -48,7 +47,3 @@
          completion:(void(^)(NSDictionary *json, BOOL success))completion;
 
 @end
-
-
-//RLM_ARRAY_TYPE(POI)
-
