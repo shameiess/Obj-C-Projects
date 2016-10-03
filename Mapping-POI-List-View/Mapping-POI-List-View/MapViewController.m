@@ -204,6 +204,7 @@ NSString * const URL = @"https://s3.amazonaws.com/mmios8week/bus.json";
     }
     return nil;
 }
+
 - (void)previewingContext:(id )previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
     [self.navigationController showViewController:viewControllerToCommit sender:nil];
 }

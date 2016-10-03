@@ -79,6 +79,11 @@
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okButton];
+        [[[UIApplication sharedApplication] keyWindow].rootViewController presentViewController:alert animated:YES completion:nil];
+
         completion(nil, NO);
     }];
 }
