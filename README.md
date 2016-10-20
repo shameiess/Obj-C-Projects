@@ -7,6 +7,13 @@ Thanks for visiting! I'm highly interested in iOS programming in **Objective-C**
 - Tax-Calculator
 - Silver-Calculator
 - Gold-Calculator
+    - MVC 
+- dev-interview-homework
+    - Realm, AFNetworking
+- Mapping-POI-List-View
+    - MapKit, Peek and Pop
+- Monster (Swift 3.0)
+    - Core Data, Delegation, Protocols
 
 
 ## Contributors
