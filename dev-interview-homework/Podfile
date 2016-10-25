@@ -4,7 +4,6 @@
 target 'dev-interview-homework' do
 
 pod 'AFNetworking'
-pod 'Mantle'
 pod 'Realm'
 
 end
