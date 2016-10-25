@@ -32,13 +32,9 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    // Checks if there is a default realm and fetches feed if it doesn't exist
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    if (!realm) {
-        [self fetchFeed];
-    }
+    [self fetchFeed];
     self.array = [Feed allObjects];
-    
+    //NSLog(@"Array Count in ViewDidLoad %lu", (unsigned long)_array.count);
 }
 
 - (void)fetchFeed {
@@ -47,11 +43,12 @@ static NSString *feedJSON = @"https://raw.githubusercontent.com/phunware/dev-int
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        //NSLog(@"%@", responseObject);
+
         for (NSDictionary* item in responseObject) {
-            
             Feed *feed = [[Feed alloc] initWithDictionary:item];
             
+            //Add each feed to Realm
             RLMRealm *realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
             [realm addObject:feed];

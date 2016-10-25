@@ -15,8 +15,8 @@
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
-    if (self) {
-        
+    if (self)
+    {
         self.identifier = dictionary[@"id"];
         self.description = dictionary[@"description"];
         self.title = dictionary[@"title"];

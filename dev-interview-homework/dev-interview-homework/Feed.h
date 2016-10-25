@@ -12,12 +12,9 @@
 @property (nonatomic) NSNumber<RLMInt> *identifier;
 @property (nonatomic) NSString *description;
 @property (nonatomic) NSString *title;
-//@property (nonatomic, copy) NSDate *timestamp;
 @property (nonatomic) NSString *timestamp;
-//@property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic,strong) NSString *imageURL;
 @property (nonatomic) NSString *dateTime;
-//@property (nonatomic) NSDate *dateTime;
 @property (nonatomic) NSString *locationLine1;
 @property (nonatomic) NSString *locationline2;
 

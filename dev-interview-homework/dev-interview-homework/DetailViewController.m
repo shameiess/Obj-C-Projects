@@ -23,11 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _feedDetail.title;
-    [self loadDetail];
+    //self.title = _feedDetail.title;
+    //[self loadDetail];
 }
 
-- (void)loadDetail {
+- (void)viewWillAppear:(BOOL)animated {
+    self.title = _feedDetail.title;
+
     if ([self.feedDetail.imageURL isKindOfClass:NSString.class]) {
         [self.detailImage setImageWithURL:[NSURL URLWithString:_feedDetail.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder_nomoon.png"]];
     }

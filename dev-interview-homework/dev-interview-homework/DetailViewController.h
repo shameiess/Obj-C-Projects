@@ -12,6 +12,5 @@
 @interface DetailViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) Feed *feedDetail;
-@property (strong, nonatomic) UIScrollView *scrollView;
 
 @end
