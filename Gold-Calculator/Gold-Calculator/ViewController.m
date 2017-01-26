@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "Calculator.h"
 
 typedef enum {ADD, SUBTRACT, MULTIPLY, DIVIDE, PERCENT, SIGN} Operation;
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *display;
+@property (nonatomic, retain) Calculator *model;
 - (IBAction)appendDigit:(UIButton *)sender;
 - (IBAction)binaryOperation:(UIButton *)sender;
 - (IBAction)enter;
@@ -30,7 +32,15 @@ NSMutableArray *expressionArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
     expressionArray = [[NSMutableArray alloc] init];
+    self.model = [[Calculator alloc] init];
 }
+
+//- (CalculatorModel *)model {
+//    if (!_model) {
+//        _model = [[CalculatorModel alloc] init];
+//    }
+//    return _model;
+//}
 
 #pragma mark - Display labels getters and setters
 
@@ -100,7 +110,7 @@ NSMutableArray *expressionArray;
     userIsTypingNumber = NO;
     operationFlag = YES;
     NSString *op = sender.currentTitle;
-    [self checkLastItemIsNumeric];
+    [self.model checkLastItemIsNumericWithArray:expressionArray];
     [expressionArray addObject:op];
     
     NSLog(@"Array: %@", expressionArray);
@@ -108,7 +118,13 @@ NSMutableArray *expressionArray;
 
 - (IBAction)enter {
     NSLog(@"Array: %@", expressionArray);
-    [self calculateExpression];
+    //    [self.model calculateExpressionWithCalculationArray:expressionArray];
+    //    //    self.display.text = [self.mo
+    //    self.display.text = self.model.result;
+    [self.model calculateExpressionWithArray:expressionArray withCcompletion:^(NSNumber *resultNumber) {
+        self.display.text = [NSString stringWithFormat:@"%@", resultNumber];
+    }];
+    
 }
 
 - (IBAction)clear {
@@ -119,32 +135,32 @@ NSMutableArray *expressionArray;
 }
 
 #pragma mark - Calculations
-- (NSNumber *)calculateExpression {
-    [self checkLastItemIsNumeric];
-    NSNumber *result;
-    double total;
-    
-    @try {
-        NSString *numericExpression = [expressionArray componentsJoinedByString:@""];
-        NSPredicate *parsed = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"1.0 * %@ = 0", numericExpression]];
-        NSExpression *expression = [(NSComparisonPredicate *)parsed leftExpression];
-        result = [expression expressionValueWithObject:nil context:nil];
-        NSLog(@"Expression: %@", expression);
-        NSLog(@"Result: %@", result);
-    } @catch (NSException *e) {
-        NSLog(@"Exception: %@", e);}
-    
-    total = [result doubleValue];
-    [self setDisplayValue:total];
-    return result;
-}
+//- (NSNumber *)calculateExpression {
+//    [self.model checkLastItemIsNumericWithArray:expressionArray];
+//    NSNumber *result;
+//    double total;
+//
+//    @try {
+//        NSString *numericExpression = [expressionArray componentsJoinedByString:@""];
+//        NSPredicate *parsed = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"1.0 * %@ = 0", numericExpression]];
+//        NSExpression *expression = [(NSComparisonPredicate *)parsed leftExpression];
+//        result = [expression expressionValueWithObject:nil context:nil];
+//        NSLog(@"Expression: %@", expression);
+//        NSLog(@"Result: %@", result);
+//    } @catch (NSException *e) {
+//        NSLog(@"Exception: %@", e);}
+//
+//    total = [result doubleValue];
+//    [self setDisplayValue:total];
+//    return result;
+//}
 
-- (void) checkLastItemIsNumeric {
-    NSString *lastItem = [expressionArray lastObject];
-    BOOL lastItemIsNumeric = [lastItem rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound;
-    if (!lastItemIsNumeric) {
-        [expressionArray removeLastObject];
-    }
-}
+//- (void) checkLastItemIsNumeric {
+//    NSString *lastItem = [expressionArray lastObject];
+//    BOOL lastItemIsNumeric = [lastItem rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location == NSNotFound;
+//    if (!lastItemIsNumeric) {
+//        [expressionArray removeLastObject];
+//    }
+//}
 
 @end

@@ -15,6 +15,7 @@
 		736188321D52DF6200D94EC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736188301D52DF6200D94EC8 /* LaunchScreen.storyboard */; };
 		7361883D1D52DF6300D94EC8 /* Gold_CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7361883C1D52DF6300D94EC8 /* Gold_CalculatorTests.m */; };
 		736188481D52DF6300D94EC8 /* Gold_CalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 736188471D52DF6300D94EC8 /* Gold_CalculatorUITests.m */; };
+		73AE5C651D6CDBC3004144E5 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AE5C641D6CDBC3004144E5 /* Calculator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		736188431D52DF6300D94EC8 /* Gold-CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gold-CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		736188471D52DF6300D94EC8 /* Gold_CalculatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gold_CalculatorUITests.m; sourceTree = "<group>"; };
 		736188491D52DF6300D94EC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73AE5C631D6CDB73004144E5 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		73AE5C641D6CDBC3004144E5 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				736188301D52DF6200D94EC8 /* LaunchScreen.storyboard */,
 				736188331D52DF6200D94EC8 /* Info.plist */,
 				736188221D52DF6200D94EC8 /* Supporting Files */,
+				73AE5C631D6CDB73004144E5 /* Calculator.h */,
+				73AE5C641D6CDBC3004144E5 /* Calculator.m */,
 			);
 			path = "Gold-Calculator";
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7361882A1D52DF6200D94EC8 /* ViewController.m in Sources */,
+				73AE5C651D6CDBC3004144E5 /* Calculator.m in Sources */,
 				736188271D52DF6200D94EC8 /* AppDelegate.m in Sources */,
 				736188241D52DF6200D94EC8 /* main.m in Sources */,
 			);

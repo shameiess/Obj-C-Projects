@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		738E200F1D9C9A4B0011CA71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 738E200E1D9C9A4B0011CA71 /* main.m */; };
+		738E20121D9C9A4B0011CA71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 738E20111D9C9A4B0011CA71 /* AppDelegate.m */; };
+		738E20151D9C9A4B0011CA71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 738E20141D9C9A4B0011CA71 /* ViewController.m */; };
+		738E20181D9C9A4B0011CA71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 738E20161D9C9A4B0011CA71 /* Main.storyboard */; };
+		738E201B1D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 738E20191D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodeld */; };
+		738E201D1D9C9A4B0011CA71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 738E201C1D9C9A4B0011CA71 /* Assets.xcassets */; };
+		738E20201D9C9A4B0011CA71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 738E201E1D9C9A4B0011CA71 /* LaunchScreen.storyboard */; };
+		738E20291D9C9AD60011CA71 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738E20281D9C9AD60011CA71 /* MapKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		738E200A1D9C9A4B0011CA71 /* Geofence-Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Geofence-Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		738E200E1D9C9A4B0011CA71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		738E20101D9C9A4B0011CA71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		738E20111D9C9A4B0011CA71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		738E20131D9C9A4B0011CA71 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		738E20141D9C9A4B0011CA71 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		738E20171D9C9A4B0011CA71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		738E201A1D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Geofence_Notifications.xcdatamodel; sourceTree = "<group>"; };
+		738E201C1D9C9A4B0011CA71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		738E201F1D9C9A4B0011CA71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		738E20211D9C9A4B0011CA71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		738E20281D9C9AD60011CA71 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		738E20071D9C9A4B0011CA71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				738E20291D9C9AD60011CA71 /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		738E20011D9C9A4B0011CA71 = {
+			isa = PBXGroup;
+			children = (
+				738E200C1D9C9A4B0011CA71 /* Geofence-Notifications */,
+				738E200B1D9C9A4B0011CA71 /* Products */,
+				738E20271D9C9AD60011CA71 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		738E200B1D9C9A4B0011CA71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				738E200A1D9C9A4B0011CA71 /* Geofence-Notifications.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		738E200C1D9C9A4B0011CA71 /* Geofence-Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				738E20101D9C9A4B0011CA71 /* AppDelegate.h */,
+				738E20111D9C9A4B0011CA71 /* AppDelegate.m */,
+				738E20131D9C9A4B0011CA71 /* ViewController.h */,
+				738E20141D9C9A4B0011CA71 /* ViewController.m */,
+				738E20161D9C9A4B0011CA71 /* Main.storyboard */,
+				738E201C1D9C9A4B0011CA71 /* Assets.xcassets */,
+				738E201E1D9C9A4B0011CA71 /* LaunchScreen.storyboard */,
+				738E20211D9C9A4B0011CA71 /* Info.plist */,
+				738E20191D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodeld */,
+				738E200D1D9C9A4B0011CA71 /* Supporting Files */,
+			);
+			path = "Geofence-Notifications";
+			sourceTree = "<group>";
+		};
+		738E200D1D9C9A4B0011CA71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				738E200E1D9C9A4B0011CA71 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		738E20271D9C9AD60011CA71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				738E20281D9C9AD60011CA71 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		738E20091D9C9A4B0011CA71 /* Geofence-Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 738E20241D9C9A4B0011CA71 /* Build configuration list for PBXNativeTarget "Geofence-Notifications" */;
+			buildPhases = (
+				738E20061D9C9A4B0011CA71 /* Sources */,
+				738E20071D9C9A4B0011CA71 /* Frameworks */,
+				738E20081D9C9A4B0011CA71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Geofence-Notifications";
+			productName = "Geofence-Notifications";
+			productReference = 738E200A1D9C9A4B0011CA71 /* Geofence-Notifications.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		738E20021D9C9A4B0011CA71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Kevin Nguyen";
+				TargetAttributes = {
+					738E20091D9C9A4B0011CA71 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = TEXCUXB4K3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 738E20051D9C9A4B0011CA71 /* Build configuration list for PBXProject "Geofence-Notifications" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 738E20011D9C9A4B0011CA71;
+			productRefGroup = 738E200B1D9C9A4B0011CA71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				738E20091D9C9A4B0011CA71 /* Geofence-Notifications */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		738E20081D9C9A4B0011CA71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				738E20201D9C9A4B0011CA71 /* LaunchScreen.storyboard in Resources */,
+				738E201D1D9C9A4B0011CA71 /* Assets.xcassets in Resources */,
+				738E20181D9C9A4B0011CA71 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		738E20061D9C9A4B0011CA71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				738E201B1D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodeld in Sources */,
+				738E20151D9C9A4B0011CA71 /* ViewController.m in Sources */,
+				738E20121D9C9A4B0011CA71 /* AppDelegate.m in Sources */,
+				738E200F1D9C9A4B0011CA71 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		738E20161D9C9A4B0011CA71 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				738E20171D9C9A4B0011CA71 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		738E201E1D9C9A4B0011CA71 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				738E201F1D9C9A4B0011CA71 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		738E20221D9C9A4B0011CA71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		738E20231D9C9A4B0011CA71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		738E20251D9C9A4B0011CA71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TEXCUXB4K3;
+				INFOPLIST_FILE = "Geofence-Notifications/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kenguyen.Geofence-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		738E20261D9C9A4B0011CA71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TEXCUXB4K3;
+				INFOPLIST_FILE = "Geofence-Notifications/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kenguyen.Geofence-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		738E20051D9C9A4B0011CA71 /* Build configuration list for PBXProject "Geofence-Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				738E20221D9C9A4B0011CA71 /* Debug */,
+				738E20231D9C9A4B0011CA71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		738E20241D9C9A4B0011CA71 /* Build configuration list for PBXNativeTarget "Geofence-Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				738E20251D9C9A4B0011CA71 /* Debug */,
+				738E20261D9C9A4B0011CA71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		738E20191D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				738E201A1D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodel */,
+			);
+			currentVersion = 738E201A1D9C9A4B0011CA71 /* Geofence_Notifications.xcdatamodel */;
+			path = Geofence_Notifications.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 738E20021D9C9A4B0011CA71 /* Project object */;
+}

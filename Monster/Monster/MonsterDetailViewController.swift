@@ -24,7 +24,7 @@ class MonsterDetailViewController: UIViewController {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
-            let monsters = try context.fetch(Monster.fetchRequest()) as! [Monster]
+            let monsters:[Monster] = try context.fetch(Monster.fetchRequest())
             print(monsters[currentMonsterIndex!])
             monsters[currentMonsterIndex!].name = nameTextField.text!
             monsters[currentMonsterIndex!].emoji = descriptionTextField.text!

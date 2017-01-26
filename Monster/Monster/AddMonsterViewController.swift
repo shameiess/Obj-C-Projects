@@ -25,17 +25,10 @@ class AddMonsterViewController: UIViewController {
             displayAlert(title: "😭", message: "Please fill in all the required fields. Thanks!")
         }
         else {
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             
             // Create new Monster object
-            let monster = Monster(context: context)
-            monster.name = nameTextField.text!
-            monster.level = 1
-            monster.emoji = descriptionTextField.text!
-            monster.ability = abilityTextField.text!
-            monster.special = specialTextField.text!
-            monster.abilityPower = Float(abilitySlider.value)
-            monster.specialPower = Float(specialSlider.value)
+            var _: Monster = createMonster(name: nameTextField.text!, levelSet: 1, description: descriptionTextField.text!, ability: abilityTextField.text!, specialPower: specialTextField.text!, powerLevel: abilitySlider.value, specialPowerLevel: specialSlider.value)
             
             // Saves to Core Data
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
@@ -48,4 +41,19 @@ class AddMonsterViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
+}
+
+extension AddMonsterViewController {
+    public func createMonster(name: String, levelSet: Int16, description: String, ability: String, specialPower: String, powerLevel: Float, specialPowerLevel: Float) -> Monster {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let monster = Monster(context: context)
+        monster.name = name
+        monster.level = levelSet
+        monster.emoji = description
+        monster.ability = ability
+        monster.special = specialPower
+        monster.abilityPower = powerLevel
+        monster.specialPower = specialPowerLevel
+        return monster
+    }
 }

@@ -27,6 +27,7 @@ NSString * const URL = @"https://s3.amazonaws.com/mmios8week/bus.json";
 - (IBAction)segmentSelected:(UISegmentedControl *)sender;
 
 @property (nonatomic, strong) id previewingContext; // Force Touch preview
+    @property (nonatomic, strong) POI *selectedPOI;
 
 @end
 
@@ -83,21 +84,12 @@ NSString * const URL = @"https://s3.amazonaws.com/mmios8week/bus.json";
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    DetailViewController *dvc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    [dvc view];
+//    NSString *identifier = NSStringFromClass(DetailViewController class);
+    self.selectedPOI = (POI *)view.annotation;
+    DetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([DetailViewController class])];
+    vc.details = self.selectedPOI;
     
-    POI *poiAnnotation = (POI *) view.annotation;
-    dvc.title = poiAnnotation.cta_stop_name;
-    dvc.routesLabel.text = poiAnnotation.routes;
-    dvc.directionLabel.text = poiAnnotation.direction;
-    dvc.intermodalLabel.text = poiAnnotation.inter_modal;
-    [poiAnnotation toStreetAddress:[poiAnnotation latitude] withLongitude:[poiAnnotation longitude] completion:^(NSString* address) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            dvc.addressLabel.text = address;
-        });
-    }];
-    
-    [self.navigationController pushViewController:dvc animated:YES];
+    [self showDetailsWithSender:view.annotation];
 }
 
 #pragma mark UITableView delegate and datasource methods
@@ -115,26 +107,50 @@ NSString * const URL = @"https://s3.amazonaws.com/mmios8week/bus.json";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    POI *poi = [_displayedArray objectAtIndex:indexPath.row];
-
+//    POI *poi = [_displayedArray objectAtIndex:indexPath.row];
+    POI *poi = _displayedArray[indexPath.row];
     cell.textLabel.text = poi.cta_stop_name;
-    cell.detailTextLabel.numberOfLines = 2;
+    cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Available routes:\n%@", poi.routes];
     
     //Needs work scrolling up and down makes all cell image blue
     if ([poi.inter_modal isEqualToString:@"Metra"]) {
         cell.imageView.image = [UIImage imageNamed:@"bluesquare"];
+    } else {
+        cell.imageView.image = [UIImage new];
     }
     return cell;
 }
+    
+    
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    POI *selected = self.displayedArray[indexPath.row];
+    if (self.selectedPOI == nil) {
+        self.selectedPOI = selected;
+    }
+    [self showDetailsWithSender:cell];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"segue"])
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
-        detailViewController.details = [self.displayedArray objectAtIndex:indexPath.row];
+    if ([segue.identifier isEqualToString:@"ViewControllerSegue"] && self.selectedPOI != nil) {
+        DetailViewController *vc = segue.destinationViewController;
+        vc.details = self.selectedPOI;
     }
+}
+    
+- (void)showDetailsWithSender:(id)sender {
+    [self performSegueWithIdentifier:@"ViewControllerSegue" sender:sender];
 }
 
 #pragma mark Search filter
